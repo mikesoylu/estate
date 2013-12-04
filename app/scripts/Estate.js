@@ -1,0 +1,1 @@
+'use strict';var Estate = new Backbone.Marionette.Application();Estate.addRegions({  agency: '#agency',  listings: '#listings'});Estate.on('initialize:after', function() {  Backbone.history.start();});
