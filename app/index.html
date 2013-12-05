@@ -11,6 +11,7 @@
         <meta name="viewport" content="width=device-width">
         <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
         <!-- build:css(.tmp) styles/main.css -->
+        <link rel="stylesheet" href="styles/bootstrap.min.css">
         <link rel="stylesheet" href="styles/main.css">
         <!-- endbuild -->
     </head>
@@ -19,16 +20,37 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
-        <div id="agency">
-        </div>
-        <div id="listings">
+        <div class="content">
+            <div id="agency">
+            </div>
+            <div id="listings">
+            </div>
         </div>
 
         <script type="text/template" id="agency-template">
-            <a href=""><%= short_name %></a>
+            <a href="<%= website %>"><%= short_name %></a>
+            <ul class="agency-users">
+            <% _.each(users, function(user){ %>
+                <li><%= user.first_name.toUpperCase() %> <%= user.last_name.toUpperCase() %></li>
+            <% }); %>
+            </ul>
         </script>
         <script type="text/template" id="listing-template">
             <a href="<%= url %>"><%= title %></a>
+        </script>
+        <script type="text/template" id="listings-template">
+            <div class="listings-container">
+            </div>
+            <div class="navigation">
+                <% if (page>1) { %>
+                    <a href="#" id="prev">prev</a>
+                <% } %>
+                <%= page %> / <%= Math.ceil(listings_found/10) %>
+                <% if (next) { %>
+                    <a href="#" id="next">next</a>
+                <% } %>
+            </div>
+            <br>
         </script>
 
         <!-- build:js scripts/vendor.js -->
@@ -42,6 +64,8 @@
 
         <!-- build:js scripts/main.js -->
         <script src="scripts/Estate.js"></script>
+        <script src="scripts/Estate.Listing.js"></script>
+        <script src="scripts/Estate.Agency.js"></script>
         <script src="scripts/main.js"></script>
         <!-- endbuild -->
 </body>

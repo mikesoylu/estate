@@ -1,0 +1,1 @@
+var Agency = Backbone.Model.extend({  url: function() {    return apiUrl + '/' + this.id;  },  initialize: function(id) {    this.id = id;  }});var AgencyView = Backbone.Marionette.ItemView.extend({  className: 'agency-container',  template: '#agency-template'});
